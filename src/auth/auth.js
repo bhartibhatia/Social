@@ -1,13 +1,42 @@
 import React,{useState} from 'react'
-import {Text,TextInput,View,StyleSheet,TouchableOpacity} from 'react-native'
+import {Text,TextInput,View,StyleSheet,TouchableOpacity,ActivityIndicator, Alert} from 'react-native'
+import auth from '@react-native-firebase/auth'
 
 export const Auth=(props)=>{
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
+const [loading, setLoading] = useState(false)
     const signUpUser=()=>
     {
-
+        if(email&&password)
+        {
+            setLoading(true)
+            auth()
+            .createUserWithEmailAndPassword(email, password)
+            .then(() => {
+              console.log('User account created & signed in!');
+            //   alert('Account created successfully')
+              setLoading(false)
+            })
+            .catch(error => {
+    
+                setLoading(false)
+              if (error.code === 'auth/email-already-in-use') {
+                console.log('That email address is already in use!');
+                }
+          
+              if (error.code === 'auth/invalid-email') {
+                console.log('That email address is invalid!');
+              }
+          
+              console.error(error);
+            });
+        }
+        else{
+            alert(`Please provide ${email ? 'password' : 'email'}`)
+        }
     }
+    
     return(
 <View style={styles.mainContainer}>
     <View style={styles.firstContainer}>
@@ -16,16 +45,18 @@ const [password, setPassword] = useState('')
     style={styles.textInput} placeholder={'Input your ID'} 
     onChangeText={(text)=>{
 console.log('email',text)
-    }}
+setEmail(text.trim())
+    }} value={email}
     />
     </View>
     <View style={styles.firstContainer}>
     <Text style={styles.text}>Password:</Text>
     <TextInput 
     style={styles.textInput} placeholder={'password'}
-    onChangeText={(password)=>{
-        console.log('password',password)
-    }}
+    onChangeText={(passwordText)=>{
+        console.log('password',passwordText)
+        setPassword(passwordText.trim())
+    }}  value={password}
     />
    
     </View>
@@ -36,6 +67,7 @@ console.log('email',text)
     >
         <Text>Sign Up</Text>
     </TouchableOpacity>
+    {loading && <ActivityIndicator color={'blue'} size={'large'}/>}
     </View>
     )
 }
@@ -70,8 +102,5 @@ const styles=StyleSheet.create({
         paddingHorizontal:10,
         paddingVertical:10,
         borderRadius:10,
-
-
-
-    }
+ }
 })
