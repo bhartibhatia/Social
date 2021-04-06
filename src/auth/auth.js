@@ -6,6 +6,7 @@ export const Auth=(props)=>{
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [loading, setLoading] = useState(false)
+console.log("props",props)
     const signUpUser=()=>
     {
         if(email&&password)
@@ -17,6 +18,7 @@ const [loading, setLoading] = useState(false)
               console.log('User account created & signed in!');
             //   alert('Account created successfully')
               setLoading(false)
+              props.navigation.navigate('home')
             })
             .catch(error => {
     
