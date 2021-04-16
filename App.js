@@ -3,13 +3,15 @@ import {Text, TextInput,View,StyleSheet} from 'react-native'
 import {Auth} from './src/auth'
 import Router from './src/router'
 import {Provider} from 'react-redux'
-import {store} from './src/store'
+import {store,persistor} from './src/store'
+import { PersistGate } from 'redux-persist/integration/react';
 
 export default App=()=>{
   return (
     <View style={styles.mainContainer}>
       <Provider store={store}>
-      <Router/>
+        <PersistGate persistor={persistor}><Router/></PersistGate>
+      
       </Provider>
       {/* <Auth/> */}
     </View>

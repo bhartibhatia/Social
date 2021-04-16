@@ -1,42 +1,47 @@
 import React,{useState} from 'react'
 import {Text,TextInput,View,StyleSheet,TouchableOpacity,ActivityIndicator, Alert} from 'react-native'
 import auth from '@react-native-firebase/auth'
-
+import {updateEmail} from './action'
+import {useDispatch} from 'react-redux'
 export const Auth=(props)=>{
 const [email, setEmail] = useState('')
 const [password, setPassword] = useState('')
 const [loading, setLoading] = useState(false)
+const dispatch=useDispatch()
 console.log("props",props)
     const signUpUser=()=>
     {
-        if(email&&password)
-        {
-            setLoading(true)
-            auth()
-            .createUserWithEmailAndPassword(email, password)
-            .then(() => {
-              console.log('User account created & signed in!');
-            //   alert('Account created successfully')
-              setLoading(false)
-              props.navigation.navigate('home')
-            })
-            .catch(error => {
+        console.log('Sign Up User',email,password)
+        dispatch(updateEmail(email,password));
+        // if(email&&password)
+        // {
+        //     setLoading(true)
+        //     auth()
+        //     .createUserWithEmailAndPassword(email, password)
+        //     .then(() => {
+        //       console.log('User account created & signed in!');
+        //       updateEmail(email,password);
+        //     //   alert('Account created successfully')
+        //     //   setLoading(false)
+        //     //   props.navigation.navigate('home')
+        //     })
+        //     .catch(error => {
     
-                setLoading(false)
-              if (error.code === 'auth/email-already-in-use') {
-                console.log('That email address is already in use!');
-                }
+        //         setLoading(false)
+        //       if (error.code === 'auth/email-already-in-use') {
+        //         console.log('That email address is already in use!');
+        //         }
           
-              if (error.code === 'auth/invalid-email') {
-                console.log('That email address is invalid!');
-              }
+        //       if (error.code === 'auth/invalid-email') {
+        //         console.log('That email address is invalid!');
+        //       }
           
-              console.error(error);
-            });
-        }
-        else{
-            alert(`Please provide ${email ? 'password' : 'email'}`)
-        }
+        //       console.error(error);
+        //     });
+        // }
+        // else{
+        //     alert(`Please provide ${email ? 'password' : 'email'}`)
+        // }
     }
     
     return(

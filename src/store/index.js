@@ -2,6 +2,7 @@ import { createLogger } from 'redux-logger';
 import { persistStore, persistReducer } from 'redux-persist';
 import { applyMiddleware, createStore, compose } from 'redux';
 import storage from 'redux-persist/lib/storage'
+import thunkMiddleware from 'redux-thunk';
 // import AsyncStorage from '@react-native-async-storage/async-storage';
 
 //custom imports below
@@ -9,6 +10,7 @@ import reducers from '../reducer';
 
 const enhancers = [
   applyMiddleware(
+    thunkMiddleware,
     createLogger({
       collapsed: true,
        predicate: () => __DEV__
