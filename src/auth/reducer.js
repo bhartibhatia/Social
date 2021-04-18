@@ -1,7 +1,7 @@
 //this is the initial  state of each sub reducres,for example-auth reducers
 
 const initialState={
-    email:'a',
+    email:'',
     password:''
 }
 export const authReducer=(state=initialState,action)=>{
@@ -10,7 +10,8 @@ export const authReducer=(state=initialState,action)=>{
         case 'updateid':
             return {...state,email:action.payload.email,password:action.payload.password}
             break;
-    
+    case 'SetDummyData':
+        return{...state,email:action.payload.emailstate,password:action.payload.passwordstate}
         default:
             return{...state}
     }

@@ -8,3 +8,14 @@ dispatch({
         
     )
 }
+
+export const newEmail=(email,password)=>{
+return((dispatch)=>{
+dispatch({
+    type:'SetDummyData',
+    payload:{emailstate:email,passwordstate:password}
+})
+}
+
+)
+}
