@@ -5,6 +5,7 @@ import { createStackNavigator } from '@react-navigation/stack';
 import { Home } from '../home';
 import { Auth } from '../auth';
 import { Explore } from '../explore';
+import { Item } from '../item'
 
 
 
@@ -20,6 +21,7 @@ export default function Router()
                 <MainStack.Screen name={"auth"} component={Auth}/>
 <MainStack.Screen name={"home"} component={Home}/>
 <MainStack.Screen name={"explore"} component={Explore}/>
+<MainStack.Screen name={"item"} component={Item}/>
             </MainStack.Navigator>
         </NavigationContainer>
     )

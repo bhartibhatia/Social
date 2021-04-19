@@ -2,6 +2,7 @@ import { combineReducers } from 'redux';
 
 import { authReducer } from '../auth/reducer'
 import {homeReducer}  from '../home/reducer' 
+import {exploreReducer} from '../explore/reducer'
 // import { exploreReducer } from '../modules/explore'
 // import { accountReducer } from "../modules/account"
 // import { taskReducer } from "../modules/task"
@@ -12,7 +13,8 @@ import {homeReducer}  from '../home/reducer'
 
 const rootReducer = combineReducers({
   authReducer,
-  homeReducer
+  homeReducer,
+  exploreReducer
 //   exploreReducer,
 //   accountReducer,
 //   taskReducer,
