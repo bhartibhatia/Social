@@ -2,11 +2,13 @@ import React from 'react'
 import {View,Text,StyleSheet} from 'react-native'
 import {OnlineDoctors} from './OnlineDoctors'
 import {Doctors} from './Doctors'
+import {DoctorsDetails} from './DoctorsDetails'
+
 
 export const Mainview = ()=>{
     return(
         <View style={styles.mainContainer}>
-            <View style={styles.firstContainer}>
+         <View style={styles.firstContainer}>
                 <Text></Text>
             <Text>Doctors</Text>
             <Text>B</Text>
@@ -15,7 +17,8 @@ export const Mainview = ()=>{
     borderTopRightRadius: 50,}}>
             <OnlineDoctors/>
             <Doctors/>
-            </View>
+            <DoctorsDetails/>
+ </View> 
         </View>
     )
 }
